@@ -1,19 +1,18 @@
-:root { --bg-base: #F9F9F6; --accent: #FF5A26; }
-html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; position: fixed; }
-.app-container { width: 100vw; height: 100dvh; background: var(--bg-base); position: relative; }
-.view-layer { position: absolute; inset: 0; background: var(--bg-base); z-index: 10; opacity: 0; pointer-events: none; transition: 0.5s; }
-.view-layer.active { opacity: 1; pointer-events: all; z-index: 20; }
-.hidden { display: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #f9f9f6; }
 
-/* Loading Animation */
-@keyframes morph { 0% { border-radius: 24px; transform: rotate(0deg); } 100% { border-radius: 50%; transform: rotate(360deg); } }
-.logo-mark { width: 80px; height: 80px; background: var(--accent); animation: morph 2s infinite linear; }
-.progress-track { width: 200px; height: 4px; background: #ddd; border-radius: 2px; }
-.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: 2s; }
+.app-container { width: 100vw; height: 100dvh; position: relative; }
+.view-layer { position: absolute; inset: 0; display: none; background: #f9f9f6; padding: 20px; }
+.view-layer.active { display: flex; flex-direction: column; }
 
-/* Simple Layouts */
-.app-header { padding: 40px 20px 20px; display: flex; align-items: center; }
-.avatar { width: 50px; height: 50px; background: #333; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-.inventory-grid { padding: 20px; display: grid; gap: 15px; }
-.card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.btn-primary { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 10px; }
+/* Loader */
+#view-loader { justify-content: center; align-items: center; }
+.logo-mark { width: 60px; height: 60px; background: #FF5A26; border-radius: 20px; animation: spin 2s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.progress-track { width: 200px; height: 4px; background: #ddd; margin-top: 20px; overflow: hidden; }
+.progress-fill { height: 100%; background: #FF5A26; width: 0%; transition: width 2s linear; }
+
+/* Elements */
+.btn { width: 100%; padding: 15px; background: #FF5A26; color: white; border: none; border-radius: 10px; margin-top: 10px; }
+.card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.avatar { width: 40px; height: 40px; background: #333; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
