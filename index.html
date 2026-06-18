@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>ShareMe</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ShareMe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-container">
-    <div id="toast-container"></div>
 
-    <div id="view-loader" class="view-layer active">
-      <div class="loader-content">
-        <div class="logo-mark"></div>
-        <h1 class="loader-brand">ShareMe</h1>
-        <div class="progress-track"><div class="progress-fill" id="loading-progress"></div></div>
-      </div>
-    </div>
-
-    <div id="view-auth" class="view-layer hidden">
-      <div class="auth-wrapper">
-        <div class="auth-header"><h2>Welcome back.</h2></div>
-        <form id="auth-form" class="auth-form">
-          <input type="email" id="auth-email" placeholder="Email" required>
-          <input type="password" id="auth-password" placeholder="Password" required>
-          <button type="submit" class="btn-primary">Continue</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="view-app" class="view-layer hidden">
-      <header class="app-header">
-        <div class="header-content">
-          <div class="avatar" id="user-avatar" onclick="showProfile()">A</div>
-          <div><span class="greeting-sub">Hello,</span><h1 class="greeting-name" id="user-name">User</h1></div>
+    <div class="app-container">
+        <!-- LOADING SCREEN -->
+        <div id="view-loader" class="view-layer active">
+            <div class="loader-content">
+                <div class="logo-mark"></div>
+                <h1>ShareMe</h1>
+                <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+            </div>
         </div>
-      </header>
-      <div class="inventory-grid" id="inventory-grid"></div>
-      <button class="fab" id="fab-add">+</button>
+
+        <!-- AUTH SCREEN -->
+        <div id="view-auth" class="view-layer">
+            <div class="center-content">
+                <h2>Welcome Back</h2>
+                <form id="login-form">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn">Sign In</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MAIN APP -->
+        <div id="view-app" class="view-layer">
+            <header>
+                <div class="avatar" id="btn-profile">A</div>
+                <h3>Dashboard</h3>
+            </header>
+            <div class="content">
+                <div class="card">Your Items: 1</div>
+                <div class="card">Points: 120</div>
+            </div>
+        </div>
+
+        <!-- PROFILE SCREEN -->
+        <div id="view-profile" class="view-layer">
+            <div class="content">
+                <button id="btn-back">← Back</button>
+                <h2>My Profile</h2>
+                <div id="profile-details"></div>
+            </div>
+        </div>
     </div>
 
-    <div id="view-profile" class="view-layer hidden">
-      <div class="profile-view">
-        <button onclick="switchView(views.profile, views.app)">← Back</button>
-        <div class="profile-card" id="profile-content"></div>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
