@@ -1,30 +1,31 @@
-const views = { loader: document.getElementById('view-loader'), auth: document.getElementById('view-auth'), app: document.getElementById('view-app'), profile: document.getElementById('view-profile') };
-let currentUser = { name: 'Ahmed', karma: 120, items: ['Power Drill'], history: ['Camping Tent'] };
-
-function switchView(hide, show) {
-  hide.classList.remove('active'); hide.classList.add('hidden');
-  show.classList.remove('hidden'); show.classList.add('active');
+// Navigation Helper
+function showView(id) {
+    document.querySelectorAll('.view-layer').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 }
 
-// Init Loading
+// 1. Loading Sequence
 window.onload = () => {
-  document.getElementById('loading-progress').style.width = '100%';
-  setTimeout(() => switchView(views.loader, views.auth), 2000);
+    setTimeout(() => {
+        document.getElementById('progress-bar').style.width = '100%';
+    }, 100);
+    setTimeout(() => showView('view-auth'), 2200);
 };
 
-// Login Logic
-document.getElementById('auth-form').onsubmit = (e) => {
-  e.preventDefault();
-  switchView(views.auth, views.app);
+// 2. Auth Logic
+document.getElementById('login-form').onsubmit = (e) => {
+    e.preventDefault();
+    showView('view-app');
 };
 
-// Profile Logic
-function showProfile() {
-  document.getElementById('profile-content').innerHTML = `
-    <h2>${currentUser.name}</h2>
-    <p>Points: ${currentUser.karma}</p>
-    <h3>Owned: ${currentUser.items.join(', ')}</h3>
-    <h3>History: ${currentUser.history.join(', ')}</h3>
-  `;
-  switchView(views.app, views.profile);
-}
+// 3. Profile Navigation
+document.getElementById('btn-profile').onclick = () => {
+    document.getElementById('profile-details').innerHTML = `
+        <p>Name: Ahmed</p>
+        <p>Points: 120</p>
+        <p>History: Drills, Tents</p>
+    `;
+    showView('view-profile');
+};
+
+document.getElementById('btn-back').onclick = () => showView('view-app');
